@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Gupta Water Supplies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background-color: #1e90ff;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo p {
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #87ceeb;
+        }
+
+        .about {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .about h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #1e90ff;
+        }
+
+        .about-content {
+            background-color: #f7f7f7;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .about-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .mission-box, .vision-box {
+            background-color: #f0f8ff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .mission-box h3, .vision-box h3 {
+            color: #1e90ff;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .mission-box p, .vision-box p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            background-color: #1e90ff;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .stat-box p {
+            font-size: 16px;
+        }
+
+        footer {
+            background-color: #1e90ff;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Gupta Water Supplies</h1>
+                <p>Pure Water, Healthy Life</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="about">
+        <h2>About Us</h2>
+        
+        <div class="about-content">
+            <p>Gupta Water Supplies has been serving the community for over 30 years with reliable and affordable water supply solutions. We are committed to providing high-quality water that meets all safety standards. Our dedicated team ensures timely delivery and excellent customer service, making us the preferred choice for thousands of satisfied customers.</p>
+            
+            <p>Founded in 1995, our company started with a simple mission: to provide clean and safe water to every household and business in the region. Over the years, we have expanded our services to include tanker deliveries, water purification, tank cleaning, and maintenance services.</p>
+            
+            <p>We use state-of-the-art purification technology including RO and UV treatment processes to ensure that the water we supply meets the highest quality standards. Our team of trained professionals is dedicated to maintaining the integrity of our water supply chain from source to delivery.</p>
+        </div>
+
+        <div class="mission-vision">
+            <div class="mission-box">
+                <h3>Our Mission</h3>
+                <p>To provide every customer with access to clean, safe, and affordable water through reliable service, innovative solutions, and unwavering commitment to quality. We strive to be the most trusted water supply partner in the region.</p>
+            </div>
+            <div class="vision-box">
+                <h3>Our Vision</h3>
+                <p>To become the leading water supply company recognized for excellence in service, quality, and customer satisfaction. We envision a future where access to clean water is guaranteed for all, and we play a vital role in making that happen.</p>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <h3>30+</h3>
+                <p>Years of Service</p>
+            </div>
+            <div class="stat-box">
+                <h3>10,000+</h3>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat-box">
+                <h3>24/7</h3>
+                <p>Support Available</p>
+            </div>
+            <div class="stat-box">
+                <h3>100%</h3>
+                <p>Quality Assured</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Gupta Water Supplies. All rights reserved.</p>
+    </footer>
+</body>
+</html>

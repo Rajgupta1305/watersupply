@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Tankers - Gupta Water Supplies</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --header-bg: #1e90ff;
+            --header-text: white;
+            --card-bg: #f0f8ff;
+            --card-border: #1e90ff;
+            --button-bg: #1e90ff;
+            --footer-bg: #1e90ff;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --header-bg: #1a1a2e;
+            --header-text: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --card-border: #e94560;
+            --button-bg: #e94560;
+            --footer-bg: #1a1a2e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo p {
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--header-text);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #87ceeb;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--header-text);
+            color: var(--header-text);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .tankers-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .tankers-section h1 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: var(--button-bg);
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 50px;
+            color: var(--text-color);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ph-info-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid var(--button-bg);
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 5px;
+        }
+
+        body.dark-mode .ph-info-box {
+            background-color: #2a2a2a;
+            border-left: 4px solid var(--button-bg);
+        }
+
+        .ph-info-box h3 {
+            color: var(--button-bg);
+            margin-bottom: 10px;
+        }
+
+        .tanker-category {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            font-size: 32px;
+            color: var(--button-bg);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--card-border);
+        }
+
+        .tanker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .tanker-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--card-border);
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tanker-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .tanker-card h3 {
+            color: var(--button-bg);
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .capacity-badge {
+            display: inline-block;
+            background-color: var(--button-bg);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .ph-badge {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            margin-left: 10px;
+        }
+
+        .ph-info {
+            background-color: rgba(30, 144, 255, 0.1);
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-size: 14px;
+            border-left: 3px solid var(--button-bg);
+        }
+
+        body.dark-mode .ph-info {
+            background-color: rgba(233, 69, 96, 0.1);
+        }
+
+        .tanker-card ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .tanker-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            color: var(--text-color);
+        }
+
+        .tanker-card ul li:before {
+            content: "✓ ";
+            color: var(--button-bg);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .tanker-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .price-tag {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--button-bg);
+            margin-top: 15px;
+        }
+
+        .book-button {
+            background-color: var(--button-bg);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .book-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: var(--footer-bg);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+            transition: background-color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .tankers-section h1 {
+                font-size: 32px;
+            }
+
+            .category-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Gupta Water Supplies</h1>
+                <p>Pure Water, Healthy Life</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="tankers.html">Tankers</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="theme-toggle">
+                    <span id="theme-icon">☀️</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="tankers-section">
+        <h1>Water Tanker Types</h1>
+        <p class="intro-text">
+            Choose from our wide range of water tankers to meet your specific needs. We offer various sizes and water quality options for residential, commercial, and industrial purposes.
+        </p>
+
+        <div class="ph-info-box">
+            <h3>💧 Understanding pH Levels in Water</h3>
+            <p><strong>What is pH?</strong> pH measures how acidic or alkaline water is on a scale of 0-14. A pH of 7 is neutral, below 7 is acidic, and above 7 is alkaline.</p>
+            <p style="margin-top: 10px;"><strong>Why it matters:</strong> For drinking water, the ideal pH range is 6.5-8.5 (BIS & WHO standards). This ensures the water is safe, tastes good, and doesn't corrode pipes. For construction water, pH 6-8 is acceptable as it prevents concrete damage and corrosion.</p>
+        </div>
+
+        <!-- POTABLE WATER TANKERS (RO/Drinking Water) -->
+        <div class="tanker-category">
+            <h2 class="category-title">🚰 Potable Water Tankers (Drinking Water)</h2>
+            
+            <div class="tanker-grid">
+                <div class="tanker-card">
+                    <h3>Small RO Tanker</h3>
+                    <span class="capacity-badge">3,000 Liters</span>
+                    <span class="ph-badge">pH: 7.0-7.5</span>
+                    <div class="ph-info">
+                        <strong>pH Level:</strong> Neutral to slightly alkaline (7.0-7.5)<br>
+                        <strong>Quality:</strong> Perfect for drinking - falls within WHO & BIS recommended range of 6.5-8.5 for safe consumption.
+                    </div>
+                    <ul>
+                        <li>RO purified drinking water</li>
+                        <li>Ideal for homes & small events</li>
+                        <li>Sanitized stainless steel tank</li>
+                        <li>BIS certified water quality</li>
+                        <li>Perfect for 20-30 people</li>
+                    </ul>
+                    <p class="price-tag">₹1,500 - ₹2,000</p>
+                    <button class="book-button" onclick="bookTanker('Small RO Tanker')">Book Now</button>
+                </div>
+
+                <div class="tanker-card">
+                    <h3>Medium RO Tanker</h3>
+                    <span class="capacity-badge">5,000 Liters</span>
+                    <span class="ph-badge">pH: 7.0-7.8</span>
+                    <div class="ph-info">
+                        <strong>pH Level:</strong> Neutral to mildly alkaline (7.0-7.8)<br>
+                        <strong>Quality:</strong> Premium drinking water quality with optimal pH for health benefits and taste.
+                    </div>
+                    <ul>
+                        <li>Premium RO + UV treated water</li>
+                        <li>Suitable for apartments & offices</li>
+                        <li>Food-grade tank material</li>
+                        <li>Regular quality testing</li>
+                        <li>Serves 50-70 people</li>
+                    </ul>
+                    <p class="price-tag">₹2,500 - ₹3,500</p>
+                    <button class="book-button" onclick="bookTanker('Medium RO Tanker')">Book Now</button>
+                </div>
+
+                <div class="tanker-card">
+                    <h3>Large RO Tanker</h3>
+                    <span class="capacity-badge">10,000 Liters</span>
+                    <span class="ph-badge">pH: 7.2-8.0</span>
+                    <div class="ph-info">
+                        <strong>pH Level:</strong> Slightly alkaline (7.2-8.0)<br>
+                        <strong>Quality:</strong> High-quality drinking water meeting all international standards for large-scale consumption.
+                    </div>
+                    <ul>
+                        <li>Industrial-grade RO purification</li>
+                        <li>Best for large events & hotels</li>
+                        <li>Certified potable water storage</li>
+                        <li>TDS controlled water supply</li>
+                        <li>Serves 100+ people</li>
+                    </ul>
+                    <p class="price-tag">₹4,500 - ₹6,000</p>
+                    <button class="book-button" onclick="bookTanker('Large RO Tanker')">Book Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NON-POTABLE WATER TANKERS -->
+        <div class="tanker-category">
+            <h2 class="category-title">🚧 Non-Potable Water Tankers (Construction/Industrial)</h2>
+            
+            <div class="tanker-grid">
+                <div class="tanker-card">
+                    <h3>Small Construction Tanker</h3>
+                    <span class="capacity-badge">4,000 Liters</span>
+                    <span class="ph-badge">pH: 6.0-8.0</span>
+                    <div class="ph-info">
+                        <strong>pH Level:</strong> Acceptable range (6.0-8.0)<br>
+                        <strong>Usage:</strong> Suitable for construction work - prevents concrete corrosion and ensures proper mixing.
+                    </div>
+                    <ul>
+                        <li>Non-drinking water supply</li>
+                        <li>Construction site usage</li>
+                        <li>Concrete mixing & cleaning</li>
+                        <li>Dust suppression</li>
+                        <li>Garden/lawn irrigation</li>
+                    </ul>
+                    <p class="price-tag">₹800 - ₹1,200</p>
+                    <button class="book-button" onclick="bookTanker('Small Construction Tanker')">Book Now</button>
+                </div>
+
+                <div class="tanker-card">
+                    <h3>Medium Industrial Tanker</h3>
+                    <span class="capacity-badge">8,000 Liters</span>
+                    <span class="ph-badge">pH: 6.0-8.5</span>
+                    <div class="ph-info">
+                        <strong>pH Level:</strong> Industrial standard (6.0-8.5)<br>
+                        <strong>Usage:</strong> Safe for construction, washing, and industrial processes without causing equipment damage.
+                    </div>
+                    <ul>
+                        <li>Industrial & construction use</li>
+                        <li>Road washing & cleaning</li>
+                        <li>Large construction projects</li>
+                        <li>Agricultural irrigation</li>
+                        <li>Firefighting backup</li>
+                    </ul>
+                    <p class="price-tag">₹1,500 - ₹2,200</p>
+                    <button class="book-button" onclick="bookTanker('Medium Industrial Tanker')">Book Now</button>
+                </div>
+
+                <div class="tanker-card">
+                    <h3>Large Industrial Tanker</h3>
+                    <span class="capacity-badge">12,000 Liters</span>
+                    <span class="ph-badge">pH: 6.0-8.5</span>
+                    <div class="ph-info">
+                        <strong>pH Level:</strong> Industrial grade (6.0-8.5)<br>
+                        <strong>Usage:</strong> Meets construction and industrial standards - safe for concrete work and machinery.
+                    </div>
+                    <ul>
+                        <li>Heavy-duty construction use</li>
+                        <li>Large-scale industrial needs</li>
+                        <li>Mining & quarry operations</li>
+                        <li>Mass irrigation projects</li>
+                        <li>Municipal water supply backup</li>
+                    </ul>
+                    <p class="price-tag">₹2,500 - ₹3,500</p>
+                    <button class="book-button" onclick="bookTanker('Large Industrial Tanker')">Book Now</button>
+                </div>
+
+                <div class="tanker-card">
+                    <h3>Extra Large Tanker</h3>
+                    <span class="capacity-badge">20,000 Liters</span>
+                    <span class="ph-badge">pH: 6.0-8.5</span>
+                    <div class="ph-info">
+                        <strong>pH Level:</strong> Controlled range (6.0-8.5)<br>
+                        <strong>Usage:</strong> Optimized for large-scale construction and industrial applications without corrosive effects.
+                    </div>
+                    <ul>
+                        <li>Mega construction projects</li>
+                        <li>Factory & plant requirements</li>
+                        <li>Emergency water supply</li>
+                        <li>Large agricultural farms</li>
+                        <li>Commercial complexes</li>
+                    </ul>
+                    <p class="price-tag">₹4,000 - ₹5,500</p>
+                    <button class="book-button" onclick="bookTanker('Extra Large Tanker')">Book Now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPECIAL PURPOSE TANKERS -->
+        <div class="tanker-category">
+            <h2 class="category-title">⭐ Special Purpose Tankers</h2>
+            
+            <div class="tanker-grid">
+                <div class="tanker-card">
+                    <h3>Emergency Water Tanker</h3>
+                    <span class="capacity-badge">6,000 Liters</span>
+                    <span class="ph-badge">pH: 6.5-8.0</span>
+                    <div class="ph-info">
+                        <strong>pH Level:</strong> Multi-purpose range (6.5-8.0)<br>
+                        <strong>Quality:</strong> Versatile water quality suitable for both drinking and non-potable emergency needs.
+                    </div>
+                    <ul>
+                        <li>24/7 emergency service</li>
+                        <li>Both potable & non-potable</li>
+                        <li>Rapid deployment</li>
+                        <li>Disaster relief support</li>
+                        <li>Within 1-2 hours delivery</li>
+                    </ul>
+                    <p class="price-tag">₹2,000 - ₹3,000</p>
+                    <button class="book-button" onclick="bookTanker('Emergency Water Tanker')">Book Now</button>
+                </div>
+
+                <div class="tanker-card">
+                    <h3>Event Water Tanker</h3>
+                    <span class="capacity-badge">8,000 Liters</span>
+                    <span class="ph-badge">pH: 7.0-7.8</span>
+                    <div class="ph-info">
+                        <strong>pH Level:</strong> Premium drinking quality (7.0-7.8)<br>
+                        <strong>Quality:</strong> Perfect for events - RO purified water with optimal pH for guest satisfaction.
+                    </div>
+                    <ul>
+                        <li>Wedding & party supply</li>
+                        <li>RO drinking water included</li>
+                        <li>Festival & cultural events</li>
+                        <li>Sporting events support</li>
+                        <li>On-site refill service</li>
+                    </ul>
+                    <p class="price-tag">₹3,000 - ₹4,500</p>
+                    <button class="book-button" onclick="bookTanker('Event Water Tanker')">Book Now</button>
+                </div>
+
+                <div class="tanker-card">
+                    <h3>Swimming Pool Tanker</h3>
+                    <span class="capacity-badge">15,000 Liters</span>
+                    <span class="ph-badge">pH: 7.2-7.6</span>
+                    <div class="ph-info">
+                        <strong>pH Level:</strong> Pool-optimized (7.2-7.6)<br>
+                        <strong>Quality:</strong> Ideal pH for swimming pools - balanced for skin comfort and chemical treatment efficiency.
+                    </div>
+                    <ul>
+                        <li>Pool filling service</li>
+                        <li>Filtered clean water</li>
+                        <li>Chlorine-free supply</li>
+                        <li>Multiple trip options</li>
+                        <li>Fast filling capability</li>
+                    </ul>
+                    <p class="price-tag">₹5,000 - ₹7,000</p>
+                    <button class="book-button" onclick="bookTanker('Swimming Pool Tanker')">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Gupta Water Supplies. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 14px;">📞 Call us: +91-9876543210 | 24/7 Service Available</p>
+    </footer>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.textContent = '🌙';
+        }
+
+        themeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeIcon.textContent = '🌙';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeIcon.textContent = '☀️';
+            }
+        });
+
+        // Book tanker function
+        function bookTanker(tankerType) {
+            alert('🚚 Booking Request\n\nTanker Type: ' + tankerType + '\n\nThank you for choosing Gupta Water Supplies!\n\nOur team will contact you shortly to confirm your booking.\n\nFor immediate assistance, call: +91-9004210193');
+        }
+    </script>
+</body>
+</html>
