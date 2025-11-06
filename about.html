@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Gupta Water Supplies</title>
     <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --header-bg: #1e90ff;
+            --header-text: white;
+            --content-bg: #f7f7f7;
+            --box-bg: #f0f8ff;
+            --stat-bg: #1e90ff;
+            --footer-bg: #1e90ff;
+            --hover-color: #87ceeb;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --header-bg: #1a1a2e;
+            --header-text: #e0e0e0;
+            --content-bg: #1e1e1e;
+            --box-bg: #2a2a2a;
+            --stat-bg: #e94560;
+            --footer-bg: #1a1a2e;
+            --hover-color: #bb86fc;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,14 +38,17 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         header {
-            background-color: #1e90ff;
-            color: white;
+            background-color: var(--header-bg);
+            color: var(--header-text);
             padding: 20px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
         }
 
         .header-container {
@@ -43,6 +70,12 @@
             font-style: italic;
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
         nav ul {
             list-style: none;
             display: flex;
@@ -50,14 +83,65 @@
         }
 
         nav ul li a {
-            color: white;
+            color: var(--header-text);
             text-decoration: none;
             font-size: 16px;
             transition: color 0.3s;
         }
 
         nav ul li a:hover {
-            color: #87ceeb;
+            color: var(--hover-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--header-text);
+            color: var(--header-text);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .sun-icon, .moon-icon {
+            position: absolute;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .sun-icon {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        body.dark-mode .sun-icon {
+            opacity: 0;
+            transform: rotate(180deg);
+        }
+
+        .moon-icon {
+            opacity: 0;
+            transform: rotate(-180deg);
+        }
+
+        body.dark-mode .moon-icon {
+            opacity: 1;
+            transform: rotate(0deg);
         }
 
         .about {
@@ -73,11 +157,16 @@
             color: #1e90ff;
         }
 
+        body.dark-mode .about h2 {
+            color: #e94560;
+        }
+
         .about-content {
-            background-color: #f7f7f7;
+            background-color: var(--content-bg);
             padding: 40px;
             border-radius: 10px;
             margin-bottom: 40px;
+            transition: background-color 0.3s ease;
         }
 
         .about-content p {
@@ -85,6 +174,10 @@
             margin-bottom: 20px;
             color: #555;
             line-height: 1.8;
+        }
+
+        body.dark-mode .about-content p {
+            color: #b0b0b0;
         }
 
         .mission-vision {
@@ -95,10 +188,11 @@
         }
 
         .mission-box, .vision-box {
-            background-color: #f0f8ff;
+            background-color: var(--box-bg);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
         }
 
         .mission-box h3, .vision-box h3 {
@@ -107,10 +201,20 @@
             margin-bottom: 15px;
         }
 
+        body.dark-mode .mission-box h3,
+        body.dark-mode .vision-box h3 {
+            color: #e94560;
+        }
+
         .mission-box p, .vision-box p {
             color: #555;
             font-size: 16px;
             line-height: 1.8;
+        }
+
+        body.dark-mode .mission-box p,
+        body.dark-mode .vision-box p {
+            color: #b0b0b0;
         }
 
         .stats {
@@ -121,11 +225,16 @@
         }
 
         .stat-box {
-            background-color: #1e90ff;
+            background-color: var(--stat-bg);
             color: white;
             padding: 30px;
             border-radius: 10px;
             text-align: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
         }
 
         .stat-box h3 {
@@ -138,11 +247,12 @@
         }
 
         footer {
-            background-color: #1e90ff;
+            background-color: var(--footer-bg);
             color: white;
             text-align: center;
             padding: 30px 20px;
             margin-top: 60px;
+            transition: background-color 0.3s ease;
         }
 
         @media (max-width: 768px) {
@@ -151,10 +261,21 @@
                 gap: 20px;
             }
 
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
             nav ul {
                 flex-direction: column;
                 gap: 10px;
                 text-align: center;
+            }
+
+            .theme-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
             }
         }
     </style>
@@ -170,9 +291,14 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
+                    <li><a href="tankers.html">Tankers</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
             </nav>
         </div>
     </header>
@@ -222,5 +348,31 @@
     <footer>
         <p>&copy; 2025 Gupta Water Supplies. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Get the theme toggle button
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        // Apply the saved theme on page load
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        // Toggle theme function
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Save the current theme to localStorage
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
 </body>
 </html>
